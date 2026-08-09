@@ -1,14 +1,17 @@
 <!DOCTYPE html>
 
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 ```
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <title>Women's Perfumes</title>
 
 <style>
+
     body {
         font-family: Arial, sans-serif;
         margin: 0;
@@ -17,6 +20,7 @@
     }
 
     /* Top section */
+
     .header {
         position: relative;
         text-align: center;
@@ -37,26 +41,69 @@
         font-size: 32px;
     }
 
-    /* Discount link */
-    .discount-link {
+
+    /* Left buttons */
+
+    .left-buttons {
         position: absolute;
         top: 25px;
-        right: 30px;
-        background-color: #c2185b;
+        left: 30px;
+
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+    }
+
+    .add-product-button {
+        background-color: #1976a8;
         color: white;
+
         padding: 12px 18px;
+
         border-radius: 10px;
+
         text-decoration: none;
         font-weight: bold;
+
+        box-shadow: 0 3px 8px rgba(0, 0, 0, 0.15);
+    }
+
+    .add-product-button:hover {
+        background-color: #125a80;
+    }
+
+
+    /* Discount link */
+
+    .discount-link {
+        position: absolute;
+
+        top: 25px;
+        right: 30px;
+
+        background-color: #c2185b;
+        color: white;
+
+        padding: 12px 18px;
+
+        border-radius: 10px;
+
+        text-decoration: none;
+        font-weight: bold;
+
+        box-shadow: 0 3px 8px rgba(0, 0, 0, 0.15);
     }
 
     .discount-link:hover {
         background-color: #880e4f;
     }
 
+
     /* Categories */
+
     .categories-section {
         text-align: center;
+
         margin: 20px auto 40px;
     }
 
@@ -65,24 +112,37 @@
     }
 
     .categories {
+
         display: flex;
+
         justify-content: center;
+
         gap: 20px;
+
         flex-wrap: wrap;
     }
 
     .category {
+
         background-color: #ad1457;
+
         border-radius: 12px;
+
         padding: 18px 30px;
+
         min-width: 160px;
+
         box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
     }
 
     .category a {
+
         color: white;
+
         text-decoration: none;
+
         font-weight: bold;
+
         font-size: 17px;
     }
 
@@ -90,68 +150,217 @@
         background-color: #880e4f;
     }
 
+
     /* Products */
+
     .products-section {
+
         max-width: 1000px;
+
         margin: 0 auto;
+
         padding: 20px;
     }
 
     .products-section h2 {
+
         text-align: center;
+
         margin-bottom: 25px;
     }
 
     .products {
+
         display: grid;
+
         grid-template-columns: repeat(2, 1fr);
+
         gap: 20px;
     }
 
     .product {
+
         background-color: #dff4ff;
+
         border: 1px solid #b8e4f5;
+
         border-radius: 12px;
+
         padding: 20px;
+
         box-shadow: 0 3px 8px rgba(0, 0, 0, 0.1);
     }
 
     .product h3 {
+
         margin-top: 0;
-        color: #1976a8;
+
         font-size: 21px;
     }
 
+    .product h3 a {
+
+        color: #1976a8;
+
+        text-decoration: none;
+    }
+
+    .product h3 a:hover {
+
+        text-decoration: underline;
+    }
+
+
+    /* Price */
+
     .price {
+
         font-size: 18px;
+
         font-weight: bold;
     }
 
+
+    /* SALE */
+
     .sale {
+
         background-color: #e91e63;
+
         color: white;
+
         padding: 5px 10px;
+
         border-radius: 6px;
+
         margin-left: 10px;
+
         font-size: 14px;
+
+        font-weight: bold;
     }
 
     .product p {
+
         margin: 8px 0;
     }
 
-    /* On small screens, use one product per row */
+
+    /* Product Details button */
+
+    .details-button {
+
+        display: inline-block;
+
+        margin-top: 12px;
+
+        background-color: #c2185b;
+
+        color: white;
+
+        padding: 10px 16px;
+
+        border-radius: 8px;
+
+        text-decoration: none;
+
+        font-weight: bold;
+    }
+
+    .details-button:hover {
+
+        background-color: #880e4f;
+    }
+
+
+    /* Update button */
+
+    .update-button {
+
+        display: inline-block;
+
+        margin-top: 8px;
+
+        background-color: #1976a8;
+
+        color: white;
+
+        padding: 10px 16px;
+
+        border-radius: 8px;
+
+        text-decoration: none;
+
+        font-weight: bold;
+    }
+
+    .update-button:hover {
+
+        background-color: #125a80;
+    }
+
+
+    /* Delete button */
+
+    .delete-button {
+
+        display: inline-block;
+
+        margin-top: 8px;
+
+        background-color: #d6336c;
+
+        color: white;
+
+        padding: 10px 16px;
+
+        border-radius: 8px;
+
+        text-decoration: none;
+
+        font-weight: bold;
+    }
+
+    .delete-button:hover {
+
+        background-color: #a61e4d;
+    }
+
+
+    /* Small screens */
+
     @media (max-width: 700px) {
+
         .products {
+
             grid-template-columns: 1fr;
         }
 
         .discount-link {
+
             position: static;
+
             display: inline-block;
+
             margin-top: 15px;
         }
+
+        .left-buttons {
+
+            position: static;
+
+            align-items: center;
+
+            margin-bottom: 15px;
+        }
+
+        .header {
+
+            padding-top: 20px;
+        }
+
     }
+
 </style>
 ```
 
@@ -161,33 +370,72 @@
 
 ```
 <!-- Header -->
+
 <div class="header">
 
-    <div class="title-box">
-        <h1>Women's Perfumes</h1>
+
+    <!-- Add Product -->
+
+    <div class="left-buttons">
+
+        <a
+            class="add-product-button"
+            href="{% url 'add_product' %}">
+            ➕ Add Product
+        </a>
+
     </div>
 
-    <a class="discount-link" href="{% url 'discounted_products' %}">
+
+    <!-- Main title -->
+
+    <div class="title-box">
+
+        <h1>Women's Perfumes</h1>
+
+    </div>
+
+
+    <!-- Discounted Products -->
+
+    <a
+        class="discount-link"
+        href="{% url 'discounted_products' %}">
+
         🔥 Discounted Products
+
     </a>
 
 </div>
 
 
+
 <!-- Categories -->
+
 <div class="categories-section">
 
     <h2>Categories</h2>
+
 
     <div class="categories">
 
         {% for category in categories %}
 
             <div class="category">
-                <a href="{% url 'category_products' category.id %}">
-                    {{ category.name }} ({{ category.product_count }})
+
+                <a
+                    href="{% url 'category_products' category.id %}">
+
+                    {{ category.name }}
+                    ({{ category.product_count }})
+
                 </a>
+
             </div>
+
+        {% empty %}
+
+            <p>No categories available.</p>
 
         {% endfor %}
 
@@ -196,44 +444,123 @@
 </div>
 
 
+
 <!-- Products -->
+
 <div class="products-section">
 
     <h2>All Products</h2>
 
+
     <div class="products">
+
 
         {% for product in products %}
 
+
             <div class="product">
 
-                <h3>{{ product.name }}</h3>
+
+                <!-- Product name -->
+
+                <h3>
+
+                    <a
+                        href="{% url 'product_detail' product.id %}">
+
+                        {{ product.name }}
+
+                    </a>
+
+                </h3>
+
+
+                <!-- Price -->
 
                 <p class="price">
+
                     ${{ product.price }}
 
+
                     {% if product.has_discount %}
-                        <span class="sale">SALE</span>
+
+                        <span class="sale">
+
+                            SALE
+
+                        </span>
+
                     {% endif %}
+
                 </p>
 
+
+                <!-- Category -->
+
                 <p>
+
                     <strong>Category:</strong>
+
                     {{ product.category.name }}
+
                 </p>
 
+
+                <!-- Odor type -->
+
                 <p>
+
                     <strong>Odor type:</strong>
+
                     {{ product.odor_type.name }}
+
                 </p>
+
+
+                <!-- Product Details -->
+
+                <a
+                    class="details-button"
+                    href="{% url 'product_detail' product.id %}">
+
+                    Product Details
+
+                </a>
+
+
+                <!-- Update -->
+
+                <a
+                    class="update-button"
+                    href="{% url 'update_product' product.id %}">
+
+                    ✏️ Update
+
+                </a>
+
+
+                <!-- Delete -->
+
+                <a
+                    class="delete-button"
+                    href="{% url 'delete_product' product.id %}">
+
+                    🗑️ Delete
+
+                </a>
+
 
             </div>
 
+
         {% empty %}
+
 
             <p>No products available.</p>
 
+
         {% endfor %}
+
 
     </div>
 
@@ -241,4 +568,5 @@
 ```
 
 </body>
+
 </html>

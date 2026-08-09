@@ -1,6 +1,7 @@
 from django.shortcuts import render
 from django.db.models import Count
 from .models import Product, Category
+from .forms import ProductForm
 
 
 def home(request):
@@ -42,5 +43,73 @@ def discounted_products(request):
         'Sunamoebi/discounted_products.html',
         {
             'products': products,
+        }
+    )
+
+def product_detail(request, product_id):
+    product = Product.objects.get(id=product_id)
+
+    return render(
+        request,
+        'Sunamoebi/product_detail.html',
+        {
+            'product': product,
+        }
+    )
+
+def add_product(request):
+    if request.method == 'POST':
+        form = ProductForm(request.POST)
+
+        if form.is_valid():
+            form.save()
+            return redirect('home')
+
+    else:
+        form = ProductForm()
+
+    return render(
+        request,
+        'Sunamoebi/add_product.html',
+        {
+            'form': form,
+        }
+    )
+
+def update_product(request, product_id):
+    product = get_object_or_404(Product, id=product_id)
+
+    if request.method == 'POST':
+        form = ProductForm(request.POST, instance=product)
+
+        if form.is_valid():
+            form.save()
+            return redirect('product_detail', product_id=product.id)
+
+    else:
+        form = ProductForm(instance=product)
+
+    return render(
+        request,
+        'Sunamoebi/update_product.html',
+        {
+            'form': form,
+            'product': product,
+        }
+    )
+    
+
+def delete_product(request, product_id):
+    product = get_object_or_404(Product, id=product_id)
+
+    if request.method == 'POST':
+        product.delete()
+        return redirect('home')
+
+    return render(
+        request,
+        'Sunamoebi/delete_product.html',
+        {
+            'product': product,
         }
     )

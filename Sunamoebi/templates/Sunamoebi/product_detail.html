@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+```
+<title>{{ product.name }}</title>
+
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        background-color: #f8f4f6;
+        color: #333;
+    }
+
+    /* Home button */
+    .home-button {
+        position: absolute;
+        top: 20px;
+        left: 20px;
+        background-color: #c2185b;
+        color: white;
+        padding: 10px 18px;
+        border-radius: 8px;
+        text-decoration: none;
+        font-weight: bold;
+        box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+    }
+
+    .home-button:hover {
+        background-color: #880e4f;
+    }
+
+    /* Main container */
+    .container {
+        max-width: 700px;
+        margin: 80px auto;
+        padding: 20px;
+    }
+
+    /* Back link */
+    .back {
+        display: inline-block;
+        margin-bottom: 20px;
+        text-decoration: none;
+        color: #8b3a62;
+        font-weight: bold;
+    }
+
+    .back:hover {
+        text-decoration: underline;
+    }
+
+    /* Product card */
+    .product-detail {
+        background-color: white;
+        padding: 35px;
+        border-radius: 15px;
+        box-shadow: 0 3px 12px rgba(0, 0, 0, 0.12);
+    }
+
+    /* Product name */
+    h1 {
+        color: #8b3a62;
+        margin-top: 0;
+        margin-bottom: 25px;
+    }
+
+    /* Price */
+    .price {
+        font-size: 22px;
+        font-weight: bold;
+        margin-bottom: 20px;
+    }
+
+    /* SALE badge */
+    .sale {
+        display: inline-block;
+        margin-left: 10px;
+        padding: 5px 10px;
+        background-color: #d6336c;
+        color: white;
+        border-radius: 5px;
+        font-size: 14px;
+        font-weight: bold;
+    }
+
+    /* Product information */
+    .product-info {
+        font-size: 17px;
+        line-height: 1.8;
+    }
+
+    .product-info strong {
+        color: #8b3a62;
+    }
+</style>
+```
+
+</head>
+
+<body>
+
+```
+<!-- Home button -->
+<a class="home-button" href="{% url 'home' %}">
+    🏠 Home
+</a>
+
+
+<!-- Main content -->
+<div class="container">
+
+    <!-- Back to products -->
+    <a class="back" href="{% url 'home' %}">
+        ← Back to products
+    </a>
+
+
+    <!-- Product details -->
+    <div class="product-detail">
+
+        <h1>{{ product.name }}</h1>
+
+        <div class="product-info">
+
+            <p class="price">
+                Price: ${{ product.price }}
+
+                {% if product.has_discount %}
+                    <span class="sale">SALE</span>
+                {% endif %}
+            </p>
+
+            <p>
+                <strong>Category:</strong>
+                {{ product.category.name }}
+            </p>
+
+            <p>
+                <strong>Odor type:</strong>
+                {{ product.odor_type.name }}
+            </p>
+
+            {% if product.has_discount %}
+
+                <p>
+                    <strong>Discount rate:</strong>
+                    {{ product.discount_rate }}%
+                </p>
+
+            {% else %}
+
+                <p>
+                    <strong>Discount:</strong>
+                    No discount
+                </p>
+
+            {% endif %}
+
+        </div>
+
+    </div>
+
+</div>
+```
+
+</body>
+</html>
