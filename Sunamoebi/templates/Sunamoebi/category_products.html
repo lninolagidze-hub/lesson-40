@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ category.name }}</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 40px;
+            background-color: #f8f4f6;
+            color: #333;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: auto;
+        }
+
+        h1 {
+            color: #8b3a62;
+        }
+
+        .products {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 20px;
+        }
+
+        .product {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .sale {
+            background-color: #d6336c;
+            color: white;
+            padding: 4px 8px;
+            border-radius: 5px;
+            font-size: 12px;
+            font-weight: bold;
+        }
+
+        .back {
+            display: inline-block;
+            margin-bottom: 25px;
+            text-decoration: none;
+            color: #8b3a62;
+            font-weight: bold;
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="container">
+
+    <a class="back" href="{% url 'home' %}">← Back to all products</a>
+
+    <h1>{{ category.name }}</h1>
+
+    <div class="products">
+
+        {% for product in products %}
+
+            <div class="product">
+
+                <h2>{{ product.name }}</h2>
+
+                <p>Price: ${{ product.price }}</p>
+
+                <p>Odor type: {{ product.odor_type.name }}</p>
+
+                {% if product.has_discount %}
+                    <span class="sale">SALE</span>
+                    <p>Discount: {{ product.discount_rate }}%</p>
+                {% endif %}
+
+            </div>
+
+        {% empty %}
+
+            <p>No products in this category.</p>
+
+        {% endfor %}
+
+    </div>
+
+</div>
+
+</body>
+</html>

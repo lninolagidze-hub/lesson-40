@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+```
+<title>Women's Perfumes</title>
+
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        background-color: #fff5fa;
+        color: #4a2140;
+    }
+
+    /* Top section */
+    .header {
+        position: relative;
+        text-align: center;
+        padding: 30px;
+    }
+
+    .title-box {
+        display: inline-block;
+        background-color: #f48fb1;
+        color: white;
+        padding: 20px 60px;
+        border-radius: 15px;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+    }
+
+    .title-box h1 {
+        margin: 0;
+        font-size: 32px;
+    }
+
+    /* Discount link */
+    .discount-link {
+        position: absolute;
+        top: 25px;
+        right: 30px;
+        background-color: #c2185b;
+        color: white;
+        padding: 12px 18px;
+        border-radius: 10px;
+        text-decoration: none;
+        font-weight: bold;
+    }
+
+    .discount-link:hover {
+        background-color: #880e4f;
+    }
+
+    /* Categories */
+    .categories-section {
+        text-align: center;
+        margin: 20px auto 40px;
+    }
+
+    .categories-section h2 {
+        margin-bottom: 20px;
+    }
+
+    .categories {
+        display: flex;
+        justify-content: center;
+        gap: 20px;
+        flex-wrap: wrap;
+    }
+
+    .category {
+        background-color: #ad1457;
+        border-radius: 12px;
+        padding: 18px 30px;
+        min-width: 160px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+    }
+
+    .category a {
+        color: white;
+        text-decoration: none;
+        font-weight: bold;
+        font-size: 17px;
+    }
+
+    .category:hover {
+        background-color: #880e4f;
+    }
+
+    /* Products */
+    .products-section {
+        max-width: 1000px;
+        margin: 0 auto;
+        padding: 20px;
+    }
+
+    .products-section h2 {
+        text-align: center;
+        margin-bottom: 25px;
+    }
+
+    .products {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 20px;
+    }
+
+    .product {
+        background-color: #dff4ff;
+        border: 1px solid #b8e4f5;
+        border-radius: 12px;
+        padding: 20px;
+        box-shadow: 0 3px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    .product h3 {
+        margin-top: 0;
+        color: #1976a8;
+        font-size: 21px;
+    }
+
+    .price {
+        font-size: 18px;
+        font-weight: bold;
+    }
+
+    .sale {
+        background-color: #e91e63;
+        color: white;
+        padding: 5px 10px;
+        border-radius: 6px;
+        margin-left: 10px;
+        font-size: 14px;
+    }
+
+    .product p {
+        margin: 8px 0;
+    }
+
+    /* On small screens, use one product per row */
+    @media (max-width: 700px) {
+        .products {
+            grid-template-columns: 1fr;
+        }
+
+        .discount-link {
+            position: static;
+            display: inline-block;
+            margin-top: 15px;
+        }
+    }
+</style>
+```
+
+</head>
+
+<body>
+
+```
+<!-- Header -->
+<div class="header">
+
+    <div class="title-box">
+        <h1>Women's Perfumes</h1>
+    </div>
+
+    <a class="discount-link" href="{% url 'discounted_products' %}">
+        🔥 Discounted Products
+    </a>
+
+</div>
+
+
+<!-- Categories -->
+<div class="categories-section">
+
+    <h2>Categories</h2>
+
+    <div class="categories">
+
+        {% for category in categories %}
+
+            <div class="category">
+                <a href="{% url 'category_products' category.id %}">
+                    {{ category.name }} ({{ category.product_count }})
+                </a>
+            </div>
+
+        {% endfor %}
+
+    </div>
+
+</div>
+
+
+<!-- Products -->
+<div class="products-section">
+
+    <h2>All Products</h2>
+
+    <div class="products">
+
+        {% for product in products %}
+
+            <div class="product">
+
+                <h3>{{ product.name }}</h3>
+
+                <p class="price">
+                    ${{ product.price }}
+
+                    {% if product.has_discount %}
+                        <span class="sale">SALE</span>
+                    {% endif %}
+                </p>
+
+                <p>
+                    <strong>Category:</strong>
+                    {{ product.category.name }}
+                </p>
+
+                <p>
+                    <strong>Odor type:</strong>
+                    {{ product.odor_type.name }}
+                </p>
+
+            </div>
+
+        {% empty %}
+
+            <p>No products available.</p>
+
+        {% endfor %}
+
+    </div>
+
+</div>
+```
+
+</body>
+</html>

@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sale - Women's Perfumes</title>
+</head>
+
+<body>
+
+    <h1>Sale - Discounted Women's Perfumes</h1>
+
+    {% for product in products %}
+
+        <div class="product">
+
+            <h3>{{ product.name }}</h3>
+
+            <p>
+                Price: ${{ product.price }}
+                <strong>SALE</strong>
+            </p>
+
+            <p>Category: {{ product.category.name }}</p>
+            <p>Odor type: {{ product.odor_type.name }}</p>
+            <p>Discount: {{ product.discount_rate }}%</p>
+
+        </div>
+
+    {% empty %}
+
+        <p>No discounted products available.</p>
+
+    {% endfor %}
+
+    <p>
+        <a href="{% url 'home' %}">Back to all products</a>
+    </p>
+
+</body>
+</html>
