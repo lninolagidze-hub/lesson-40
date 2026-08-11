@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+    <title>My Profile</title>
+
+```
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        min-height: 100vh;
+        background-color: #dff4ff;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        color: #333;
+    }
+
+    .profile-box {
+        width: 450px;
+        background-color: white;
+        padding: 35px;
+        border-radius: 25px;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.15);
+    }
+
+    h1 {
+        text-align: center;
+        color: #1976a8;
+        margin-bottom: 30px;
+    }
+
+    .info {
+        background-color: #f0faff;
+        padding: 15px 18px;
+        margin-bottom: 15px;
+        border-radius: 15px;
+        border: 1px solid #b8e4f5;
+    }
+
+    .info strong {
+        color: #1976a8;
+    }
+
+    .button {
+        display: block;
+        width: 100%;
+        padding: 13px;
+        margin-top: 12px;
+        box-sizing: border-box;
+        border-radius: 12px;
+        text-align: center;
+        text-decoration: none;
+        font-weight: bold;
+        font-size: 16px;
+        border: none;
+        cursor: pointer;
+    }
+
+    .update-button {
+        background-color: #1976a8;
+        color: white;
+    }
+
+    .update-button:hover {
+        background-color: #0d5275;
+    }
+
+    .logout-button {
+        background-color: #c2185b;
+        color: white;
+    }
+
+    .logout-button:hover {
+        background-color: #880e4f;
+    }
+
+    .back {
+        display: block;
+        text-align: center;
+        margin-top: 25px;
+        color: #1976a8;
+        text-decoration: none;
+        font-weight: bold;
+    }
+
+    .back:hover {
+        color: #0d5275;
+    }
+</style>
+```
+
+</head>
+
+<body>
+
+```
+<div class="profile-box">
+
+    <h1>My Profile</h1>
+
+    <div class="info">
+        <strong>Username:</strong>
+        {{ user.username }}
+    </div>
+
+    <div class="info">
+        <strong>Email:</strong>
+        {{ user.email }}
+    </div>
+
+    <div class="info">
+        <strong>First name:</strong>
+        {{ user.first_name }}
+    </div>
+
+    <div class="info">
+        <strong>Last name:</strong>
+        {{ user.last_name }}
+    </div>
+
+    <a class="button update-button" href="{% url 'update_profile' %}">
+        Update Profile
+    </a>
+
+    <a class="button logout-button" href="{% url 'logout' %}">
+        Logout
+    </a>
+
+    <a class="back" href="{% url 'home' %}">
+        ← Back to Home
+    </a>
+
+</div>
+```
+
+</body>
+
+</html>
