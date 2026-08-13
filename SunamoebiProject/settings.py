@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'Sunamoebi',
     'users',
+    'debug_toolbar',
 ]
 
 MIDDLEWARE = [
@@ -49,8 +50,8 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'debug_toolbar.middleware.DebugToolbarMiddleware',
 ]
-
 ROOT_URLCONF = 'SunamoebiProject.urls'
 
 TEMPLATES = [
@@ -63,6 +64,7 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'Sunamoebi.context_processors.latest_products',
             ],
         },
     },
@@ -127,3 +129,7 @@ MAILERS = {
         'BACKEND': 'django.core.mail.backends.console.EmailBackend',
     },
 }
+
+INTERNAL_IPS = [
+    '127.0.0.1',
+]

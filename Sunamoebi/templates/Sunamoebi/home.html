@@ -1,691 +1,448 @@
-<!DOCTYPE html>
+{% extends 'Sunamoebi/base.html' %}
 
-<html lang="en">
 
-<head>
+{% block title %}
+    Women's Perfumes
+{% endblock %}
 
-    <meta charset="UTF-8">
 
-    <meta
-        name="viewport"
-        content="width=device-width, initial-scale=1.0"
-    >
+{% block content %}
 
-    <title>Women's Perfumes</title>
 
+<style>
 
-    <style>
+    .title-box {
 
-        /* =========================
-           GENERAL
-        ========================= */
+        text-align: center;
 
-        body {
+        background-color: #f48fb1;
 
-            font-family: Arial, sans-serif;
+        color: white;
 
-            margin: 0;
+        padding: 20px;
 
-            background-color: #fff5fa;
+        border-radius: 15px;
 
-            color: #4a2140;
-        }
+        margin-bottom: 30px;
 
+        box-shadow:
+            0 4px 10px
+            rgba(0, 0, 0, 0.15);
+    }
 
-        /* =========================
-           HEADER
-        ========================= */
 
-        .header {
+    .title-box h1 {
 
-            position: relative;
+        margin: 0;
 
-            text-align: center;
+        font-size: 32px;
+    }
 
-            padding: 30px;
-        }
 
+    /* SEARCH / FILTER / SORT */
 
-        .title-box {
+    .filter-box {
 
-            display: inline-block;
+        background-color: white;
 
-            background-color: #f48fb1;
+        padding: 25px;
 
-            color: white;
+        border-radius: 18px;
 
-            padding: 20px 60px;
+        margin-bottom: 35px;
 
-            border-radius: 15px;
+        box-shadow:
+            0 4px 12px
+            rgba(0, 0, 0, 0.12);
+    }
 
-            box-shadow:
-                0 4px 10px
-                rgba(0, 0, 0, 0.15);
-        }
 
+    .filter-box h2 {
 
-        .title-box h1 {
+        text-align: center;
 
-            margin: 0;
+        color: #c2185b;
 
-            font-size: 32px;
-        }
+        margin-top: 0;
 
+        margin-bottom: 25px;
+    }
 
-        /* =========================
-           LEFT BUTTON
-        ========================= */
 
-        .left-buttons {
+    .filter-form {
 
-            position: absolute;
+        display: grid;
 
-            top: 25px;
+        grid-template-columns:
+            repeat(2, 1fr);
 
-            left: 30px;
+        gap: 18px;
+    }
 
-            display: flex;
 
-            flex-direction: column;
+    .filter-item {
 
-            gap: 8px;
-        }
+        display: flex;
 
+        flex-direction: column;
+    }
 
-        .add-product-button {
 
-            background-color: #1976a8;
+    .filter-item label {
 
-            color: white;
+        margin-bottom: 7px;
 
-            padding: 12px 18px;
+        font-weight: bold;
 
-            border-radius: 10px;
+        color: #6a1b4d;
+    }
 
-            text-decoration: none;
 
-            font-weight: bold;
+    .filter-item input,
 
-            box-shadow:
-                0 3px 8px
-                rgba(0, 0, 0, 0.15);
-        }
+    .filter-item select {
 
+        width: 100%;
 
-        .add-product-button:hover {
+        padding: 12px;
 
-            background-color: #125a80;
-        }
+        border: 1px solid #e1a7bd;
 
+        border-radius: 9px;
 
-        /* =========================
-           DISCOUNT BUTTON
-        ========================= */
+        box-sizing: border-box;
 
-        .discount-link {
+        font-size: 15px;
 
-            position: absolute;
+        background-color: white;
+    }
 
-            top: 25px;
 
-            right: 30px;
+    .filter-item input:focus,
 
-            background-color: #c2185b;
+    .filter-item select:focus {
 
-            color: white;
+        outline: none;
 
-            padding: 12px 18px;
+        border-color: #c2185b;
+    }
 
-            border-radius: 10px;
 
-            text-decoration: none;
+    .filter-buttons {
 
-            font-weight: bold;
+        grid-column: 1 / -1;
 
-            box-shadow:
-                0 3px 8px
-                rgba(0, 0, 0, 0.15);
-        }
+        display: flex;
 
+        justify-content: center;
 
-        .discount-link:hover {
+        gap: 12px;
 
-            background-color: #880e4f;
-        }
+        margin-top: 5px;
+    }
 
 
-        /* =========================
-           SEARCH / FILTER / SORT
-        ========================= */
+    .apply-button {
 
-        .filter-box {
+        background-color: #c2185b;
 
-            max-width: 1000px;
+        color: white;
 
-            margin: 10px auto 35px;
+        border: none;
 
-            padding: 25px;
+        padding: 12px 25px;
 
-            background-color: white;
+        border-radius: 9px;
 
-            border-radius: 18px;
+        font-size: 15px;
 
-            box-shadow:
-                0 4px 12px
-                rgba(0, 0, 0, 0.12);
-        }
+        font-weight: bold;
 
+        cursor: pointer;
+    }
 
-        .filter-box h2 {
 
-            text-align: center;
+    .apply-button:hover {
 
-            color: #c2185b;
+        background-color: #880e4f;
+    }
 
-            margin-top: 0;
 
-            margin-bottom: 25px;
-        }
+    .clear-button {
 
+        background-color: #1976a8;
+
+        color: white;
+
+        padding: 12px 25px;
+
+        border-radius: 9px;
+
+        text-decoration: none;
+
+        font-size: 15px;
+
+        font-weight: bold;
+    }
+
+
+    .clear-button:hover {
+
+        background-color: #125a80;
+    }
+
+
+    /* CATEGORIES */
+
+    .categories-section {
+
+        text-align: center;
+
+        margin-bottom: 40px;
+    }
+
+
+    .categories {
+
+        display: flex;
+
+        justify-content: center;
+
+        gap: 20px;
+
+        flex-wrap: wrap;
+    }
+
+
+    .category {
+
+        background-color: #ad1457;
+
+        border-radius: 12px;
+
+        padding: 18px 30px;
+
+        min-width: 160px;
+
+        box-shadow:
+            0 4px 8px
+            rgba(0, 0, 0, 0.15);
+    }
+
+
+    .category a {
+
+        color: white;
+
+        text-decoration: none;
+
+        font-weight: bold;
+
+        font-size: 17px;
+    }
+
+
+    .category:hover {
+
+        background-color: #880e4f;
+    }
+
+
+    /* PRODUCTS */
+
+    .products-section h2 {
+
+        text-align: center;
+
+        margin-bottom: 25px;
+    }
+
+
+    .products {
+
+        display: grid;
+
+        grid-template-columns:
+            repeat(2, 1fr);
+
+        gap: 20px;
+    }
+
+
+    .product {
+
+        background-color: #dff4ff;
+
+        border: 1px solid #b8e4f5;
+
+        border-radius: 12px;
+
+        padding: 20px;
+
+        box-shadow:
+            0 3px 8px
+            rgba(0, 0, 0, 0.1);
+    }
+
+
+    .product h3 {
+
+        margin-top: 0;
+
+        font-size: 21px;
+    }
+
+
+    .product h3 a {
+
+        color: #1976a8;
+
+        text-decoration: none;
+    }
+
+
+    .product h3 a:hover {
+
+        text-decoration: underline;
+    }
+
+
+    .price {
+
+        font-size: 18px;
+
+        font-weight: bold;
+    }
+
+
+    .sale {
+
+        background-color: #e91e63;
+
+        color: white;
+
+        padding: 5px 10px;
+
+        border-radius: 6px;
+
+        margin-left: 10px;
+
+        font-size: 14px;
+
+        font-weight: bold;
+    }
+
+
+    .details-button,
+
+    .update-button,
+
+    .delete-button {
+
+        display: inline-block;
+
+        margin-top: 10px;
+
+        color: white;
+
+        padding: 10px 16px;
+
+        border-radius: 8px;
+
+        text-decoration: none;
+
+        font-weight: bold;
+    }
+
+
+    .details-button {
+
+        background-color: #c2185b;
+    }
+
+
+    .update-button {
+
+        background-color: #1976a8;
+    }
+
+
+    .delete-button {
+
+        background-color: #d6336c;
+    }
+
+
+    .details-button:hover {
+
+        background-color: #880e4f;
+    }
+
+
+    .update-button:hover {
+
+        background-color: #125a80;
+    }
+
+
+    .delete-button:hover {
+
+        background-color: #a61e4d;
+    }
+
+
+    .no-products {
+
+        grid-column: 1 / -1;
+
+        text-align: center;
+
+        background-color: white;
+
+        padding: 30px;
+
+        border-radius: 12px;
+
+        font-size: 18px;
+    }
+
+
+    @media (max-width: 700px) {
 
         .filter-form {
 
-            display: grid;
-
-            grid-template-columns:
-                repeat(2, 1fr);
-
-            gap: 18px;
+            grid-template-columns: 1fr;
         }
 
-
-        .filter-item {
-
-            display: flex;
-
-            flex-direction: column;
-        }
-
-
-        .filter-item label {
-
-            margin-bottom: 7px;
-
-            font-weight: bold;
-
-            color: #6a1b4d;
-        }
-
-
-        .filter-item input,
-
-        .filter-item select {
-
-            width: 100%;
-
-            padding: 12px;
-
-            border: 1px solid #e1a7bd;
-
-            border-radius: 9px;
-
-            box-sizing: border-box;
-
-            font-size: 15px;
-
-            background-color: white;
-        }
-
-
-        .filter-item input:focus,
-
-        .filter-item select:focus {
-
-            outline: none;
-
-            border-color: #c2185b;
-        }
-
-
-        /* =========================
-           FILTER BUTTONS
-        ========================= */
 
         .filter-buttons {
 
-            grid-column: 1 / -1;
-
-            display: flex;
-
-            justify-content: center;
-
-            gap: 12px;
-
-            margin-top: 5px;
-        }
-
-
-        .apply-button {
-
-            background-color: #c2185b;
-
-            color: white;
-
-            border: none;
-
-            padding: 12px 25px;
-
-            border-radius: 9px;
-
-            font-size: 15px;
-
-            font-weight: bold;
-
-            cursor: pointer;
-        }
-
-
-        .apply-button:hover {
-
-            background-color: #880e4f;
-        }
-
-
-        .clear-button {
-
-            background-color: #1976a8;
-
-            color: white;
-
-            padding: 12px 25px;
-
-            border-radius: 9px;
-
-            text-decoration: none;
-
-            font-size: 15px;
-
-            font-weight: bold;
-        }
-
-
-        .clear-button:hover {
-
-            background-color: #125a80;
-        }
-
-
-        /* =========================
-           CATEGORIES
-        ========================= */
-
-        .categories-section {
-
-            text-align: center;
-
-            margin: 20px auto 40px;
-        }
-
-
-        .categories-section h2 {
-
-            margin-bottom: 20px;
-        }
-
-
-        .categories {
-
-            display: flex;
-
-            justify-content: center;
-
-            gap: 20px;
-
-            flex-wrap: wrap;
-        }
-
-
-        .category {
-
-            background-color: #ad1457;
-
-            border-radius: 12px;
-
-            padding: 18px 30px;
-
-            min-width: 160px;
-
-            box-shadow:
-                0 4px 8px
-                rgba(0, 0, 0, 0.15);
-        }
-
-
-        .category a {
-
-            color: white;
-
-            text-decoration: none;
-
-            font-weight: bold;
-
-            font-size: 17px;
-        }
-
-
-        .category:hover {
-
-            background-color: #880e4f;
-        }
-
-
-        /* =========================
-           PRODUCTS
-        ========================= */
-
-        .products-section {
-
-            max-width: 1000px;
-
-            margin: 0 auto;
-
-            padding: 20px;
-        }
-
-
-        .products-section h2 {
-
-            text-align: center;
-
-            margin-bottom: 25px;
+            grid-column: auto;
         }
 
 
         .products {
 
-            display: grid;
-
-            grid-template-columns:
-                repeat(2, 1fr);
-
-            gap: 20px;
+            grid-template-columns: 1fr;
         }
 
+    }
 
-        .product {
+</style>
 
-            background-color: #dff4ff;
 
-            border: 1px solid #b8e4f5;
+<!-- TITLE -->
 
-            border-radius: 12px;
+<div class="title-box">
 
-            padding: 20px;
-
-            box-shadow:
-                0 3px 8px
-                rgba(0, 0, 0, 0.1);
-        }
-
-
-        .product h3 {
-
-            margin-top: 0;
-
-            font-size: 21px;
-        }
-
-
-        .product h3 a {
-
-            color: #1976a8;
-
-            text-decoration: none;
-        }
-
-
-        .product h3 a:hover {
-
-            text-decoration: underline;
-        }
-
-
-        /* =========================
-           PRICE
-        ========================= */
-
-        .price {
-
-            font-size: 18px;
-
-            font-weight: bold;
-        }
-
-
-        /* =========================
-           SALE
-        ========================= */
-
-        .sale {
-
-            background-color: #e91e63;
-
-            color: white;
-
-            padding: 5px 10px;
-
-            border-radius: 6px;
-
-            margin-left: 10px;
-
-            font-size: 14px;
-
-            font-weight: bold;
-        }
-
-
-        .product p {
-
-            margin: 8px 0;
-        }
-
-
-        /* =========================
-           PRODUCT BUTTONS
-        ========================= */
-
-        .details-button,
-
-        .update-button,
-
-        .delete-button {
-
-            display: inline-block;
-
-            margin-top: 10px;
-
-            color: white;
-
-            padding: 10px 16px;
-
-            border-radius: 8px;
-
-            text-decoration: none;
-
-            font-weight: bold;
-        }
-
-
-        .details-button {
-
-            background-color: #c2185b;
-        }
-
-
-        .details-button:hover {
-
-            background-color: #880e4f;
-        }
-
-
-        .update-button {
-
-            background-color: #1976a8;
-        }
-
-
-        .update-button:hover {
-
-            background-color: #125a80;
-        }
-
-
-        .delete-button {
-
-            background-color: #d6336c;
-        }
-
-
-        .delete-button:hover {
-
-            background-color: #a61e4d;
-        }
-
-
-        /* =========================
-           NO PRODUCTS
-        ========================= */
-
-        .no-products {
-
-            grid-column: 1 / -1;
-
-            text-align: center;
-
-            background-color: white;
-
-            padding: 30px;
-
-            border-radius: 12px;
-
-            color: #8b3a62;
-
-            font-size: 18px;
-        }
-
-
-        /* =========================
-           MOBILE
-        ========================= */
-
-        @media (max-width: 700px) {
-
-            .filter-form {
-
-                grid-template-columns: 1fr;
-            }
-
-
-            .filter-buttons {
-
-                grid-column: auto;
-            }
-
-
-            .products {
-
-                grid-template-columns: 1fr;
-            }
-
-
-            .discount-link {
-
-                position: static;
-
-                display: inline-block;
-
-                margin-top: 15px;
-            }
-
-
-            .left-buttons {
-
-                position: static;
-
-                align-items: center;
-
-                margin-bottom: 15px;
-            }
-
-
-            .header {
-
-                padding-top: 20px;
-            }
-
-
-            .title-box {
-
-                padding: 15px 30px;
-            }
-
-
-            .title-box h1 {
-
-                font-size: 25px;
-            }
-
-        }
-
-    </style>
-
-</head>
-
-
-<body>
-
-
-<!-- =========================
-     HEADER
-========================= -->
-
-<div class="header">
-
-
-    <div class="left-buttons">
-
-        <a
-            class="add-product-button"
-            href="{% url 'add_product' %}"
-        >
-            ➕ Add Product
-        </a>
-
-    </div>
-
-
-    <div class="title-box">
-
-        <h1>
-            Women's Perfumes
-        </h1>
-
-    </div>
-
-
-    <a
-        class="discount-link"
-        href="{% url 'discounted_products' %}"
-    >
-        🔥 Discounted Products
-    </a>
+    <h1>
+        Women's Perfumes
+    </h1>
 
 </div>
 
 
-<!-- =========================
-     SEARCH / FILTER / SORT
-========================= -->
+<!-- SEARCH / FILTER / SORT -->
 
 <div class="filter-box">
 
@@ -810,18 +567,9 @@
                 name="discount"
             >
 
-                <option
-                    value=""
-
-                    {% if selected_discount == '' %}
-                        selected
-                    {% endif %}
-                >
-
+                <option value="">
                     All Products
-
                 </option>
-
 
                 <option
                     value="yes"
@@ -834,7 +582,6 @@
                     Discounted Only
 
                 </option>
-
 
                 <option
                     value="no"
@@ -952,9 +699,7 @@
 </div>
 
 
-<!-- =========================
-     CATEGORIES
-========================= -->
+<!-- CATEGORIES -->
 
 <div class="categories-section">
 
@@ -964,7 +709,6 @@
 
 
     <div class="categories">
-
 
         {% for category in categories %}
 
@@ -990,15 +734,12 @@
 
         {% endfor %}
 
-
     </div>
 
 </div>
 
 
-<!-- =========================
-     PRODUCTS
-========================= -->
+<!-- PRODUCTS -->
 
 <div class="products-section">
 
@@ -1009,14 +750,9 @@
 
     <div class="products">
 
-
         {% for product in products %}
 
-
             <div class="product">
-
-
-                <!-- PRODUCT NAME -->
 
                 <h3>
 
@@ -1031,8 +767,6 @@
                 </h3>
 
 
-                <!-- PRICE -->
-
                 <p class="price">
 
                     ${{ product.price }}
@@ -1041,17 +775,13 @@
                     {% if product.has_discount %}
 
                         <span class="sale">
-
                             SALE
-
                         </span>
 
                     {% endif %}
 
                 </p>
 
-
-                <!-- CATEGORY -->
 
                 <p>
 
@@ -1064,8 +794,6 @@
                 </p>
 
 
-                <!-- ODOR TYPE -->
-
                 <p>
 
                     <strong>
@@ -1076,8 +804,6 @@
 
                 </p>
 
-
-                <!-- DISCOUNT RATE -->
 
                 {% if product.has_discount %}
 
@@ -1094,8 +820,6 @@
                 {% endif %}
 
 
-                <!-- DETAILS -->
-
                 <a
                     class="details-button"
                     href="{% url 'product_detail' product.id %}"
@@ -1105,8 +829,6 @@
 
                 </a>
 
-
-                <!-- UPDATE -->
 
                 <a
                     class="update-button"
@@ -1118,8 +840,6 @@
                 </a>
 
 
-                <!-- DELETE -->
-
                 <a
                     class="delete-button"
                     href="{% url 'delete_product' product.id %}"
@@ -1129,12 +849,10 @@
 
                 </a>
 
-
             </div>
 
 
         {% empty %}
-
 
             <div class="no-products">
 
@@ -1146,15 +864,11 @@
 
             </div>
 
-
         {% endfor %}
-
 
     </div>
 
 </div>
 
 
-</body>
-
-</html>
+{% endblock %}

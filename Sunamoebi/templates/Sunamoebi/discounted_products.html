@@ -1,41 +1,157 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sale - Women's Perfumes</title>
-</head>
+{% extends 'Sunamoebi/base.html' %}
 
-<body>
+{% block title %}
+    Sale - Women's Perfumes
+{% endblock %}
 
-    <h1>Sale - Discounted Women's Perfumes</h1>
+{% block content %}
 
-    {% for product in products %}
+<style>
 
-        <div class="product">
+    .discounted-container {
+        max-width: 1000px;
+        margin: 40px auto;
+    }
 
-            <h3>{{ product.name }}</h3>
+    .discounted-title {
+        text-align: center;
+        color: #c2185b;
+        margin-bottom: 30px;
+    }
+
+    .products {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 20px;
+    }
+
+    .product {
+        background-color: white;
+        padding: 20px;
+        border-radius: 12px;
+        box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+    }
+
+    .product h3 {
+        margin-top: 0;
+        color: #1976a8;
+    }
+
+    .sale {
+        background-color: #e91e63;
+        color: white;
+        padding: 5px 10px;
+        border-radius: 6px;
+        margin-left: 8px;
+        font-size: 13px;
+        font-weight: bold;
+    }
+
+    .details-button {
+        display: inline-block;
+        margin-top: 10px;
+        background-color: #c2185b;
+        color: white;
+        padding: 9px 14px;
+        border-radius: 8px;
+        text-decoration: none;
+        font-weight: bold;
+    }
+
+    .details-button:hover {
+        background-color: #880e4f;
+    }
+
+    .back {
+        display: inline-block;
+        margin-top: 25px;
+        color: #8b3a62;
+        text-decoration: none;
+        font-weight: bold;
+    }
+
+    .back:hover {
+        text-decoration: underline;
+    }
+
+</style>
+
+
+<div class="discounted-container">
+
+    <h1 class="discounted-title">
+        🔥 Sale - Discounted Women's Perfumes
+    </h1>
+
+
+    <div class="products">
+
+        {% for product in products %}
+
+            <div class="product">
+
+                <h3>
+                    {{ product.name }}
+                </h3>
+
+
+                <p>
+                    <strong>Price:</strong>
+                    ${{ product.price }}
+
+                    <span class="sale">
+                        SALE
+                    </span>
+                </p>
+
+
+                <p>
+                    <strong>Category:</strong>
+                    {{ product.category.name }}
+                </p>
+
+
+                <p>
+                    <strong>Odor type:</strong>
+                    {{ product.odor_type.name }}
+                </p>
+
+
+                <p>
+                    <strong>Discount:</strong>
+                    {{ product.discount_rate }}%
+                </p>
+
+
+                <a
+                    class="details-button"
+                    href="{% url 'product_detail' product.id %}">
+
+                    Product Details
+
+                </a>
+
+            </div>
+
+        {% empty %}
 
             <p>
-                Price: ${{ product.price }}
-                <strong>SALE</strong>
+                No discounted products available.
             </p>
 
-            <p>Category: {{ product.category.name }}</p>
-            <p>Odor type: {{ product.odor_type.name }}</p>
-            <p>Discount: {{ product.discount_rate }}%</p>
+        {% endfor %}
 
-        </div>
+    </div>
 
-    {% empty %}
 
-        <p>No discounted products available.</p>
+    <a
+        class="back"
+        href="{% url 'home' %}">
 
-    {% endfor %}
+        ← Back to all products
 
-    <p>
-        <a href="{% url 'home' %}">Back to all products</a>
-    </p>
+    </a>
 
-</body>
-</html>
+</div>
+
+{% endblock %}

@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>
+        {% block title %}
+            Women's Perfumes
+        {% endblock %}
+    </title>
+
+
+    <style>
+
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            background-color: #fff5fa;
+            color: #4a2140;
+        }
+
+
+        .navbar {
+
+            background-color: #c2185b;
+
+            padding: 15px 30px;
+
+            display: flex;
+
+            justify-content: space-between;
+
+            align-items: center;
+        }
+
+
+        .navbar a {
+
+            color: white;
+
+            text-decoration: none;
+
+            font-weight: bold;
+
+            margin-right: 15px;
+        }
+
+
+        .navbar a:hover {
+
+            text-decoration: underline;
+        }
+
+
+        .container {
+
+            max-width: 1100px;
+
+            margin: 0 auto;
+
+            padding: 30px 20px;
+        }
+
+
+        .latest-products {
+
+            max-width: 1100px;
+
+            margin: 30px auto;
+
+            padding: 20px;
+
+            background-color: white;
+
+            border-radius: 15px;
+
+            box-shadow:
+                0 3px 10px
+                rgba(0, 0, 0, 0.1);
+        }
+
+
+        .latest-products h2 {
+
+            text-align: center;
+
+            color: #c2185b;
+        }
+
+
+        .latest-list {
+
+            display: flex;
+
+            justify-content: center;
+
+            gap: 15px;
+
+            flex-wrap: wrap;
+        }
+
+
+        .latest-item {
+
+            background-color: #dff4ff;
+
+            padding: 15px;
+
+            border-radius: 10px;
+
+            min-width: 150px;
+
+            text-align: center;
+        }
+
+
+        .latest-item a {
+
+            color: #1976a8;
+
+            text-decoration: none;
+
+            font-weight: bold;
+        }
+
+
+        footer {
+
+            text-align: center;
+
+            padding: 25px;
+
+            margin-top: 40px;
+
+            background-color: #f8bbd0;
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+<!-- NAVIGATION -->
+
+<nav class="navbar">
+
+    <div>
+
+        <a href="{% url 'home' %}">
+            🏠 Home
+        </a>
+
+        <a href="{% url 'discounted_products' %}">
+            🔥 Discounts
+        </a>
+
+        <a href="{% url 'add_product' %}">
+            ➕ Add Product
+        </a>
+
+    </div>
+
+
+    <div>
+
+        {% if user.is_authenticated %}
+
+            <a href="{% url 'profile' %}">
+                👤 Profile
+            </a>
+
+            <a href="{% url 'logout' %}">
+                Logout
+            </a>
+
+        {% else %}
+
+            <a href="{% url 'login' %}">
+                Login
+            </a>
+
+            <a href="{% url 'register' %}">
+                Register
+            </a>
+
+        {% endif %}
+
+    </div>
+
+</nav>
+
+
+<!-- MAIN CONTENT -->
+
+<div class="container">
+
+    {% block content %}
+
+    {% endblock %}
+
+</div>
+
+
+<!-- LAST 5 PRODUCTS -->
+
+<div class="latest-products">
+
+    <h2>
+        Latest 5 Products
+    </h2>
+
+
+    <div class="latest-list">
+
+        {% for product in latest_products %}
+
+            <div class="latest-item">
+
+                <a
+                    href="{% url 'product_detail' product.id %}"
+                >
+
+                    {{ product.name }}
+
+                </a>
+
+                <br>
+
+                ${{ product.price }}
+
+            </div>
+
+        {% empty %}
+
+            <p>
+                No products available.
+            </p>
+
+        {% endfor %}
+
+    </div>
+
+</div>
+
+
+<!-- FOOTER -->
+
+<footer>
+
+    Women's Perfumes © 2026
+
+</footer>
+
+
+</body>
+
+</html>

@@ -1,69 +1,41 @@
-<!DOCTYPE html>
+{% extends 'Sunamoebi/base.html' %}
 
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+{% block title %}
+    Add Product
+{% endblock %}
 
-```
-<title>Add Product</title>
+{% block content %}
 
 <style>
-    body {
-        font-family: Arial, sans-serif;
-        margin: 0;
-        background-color: #fff5fa;
-        color: #4a2140;
-    }
-
-    .home-button {
-        position: absolute;
-        top: 20px;
-        left: 20px;
-        background-color: #c2185b;
-        color: white;
-        padding: 10px 18px;
-        border-radius: 8px;
-        text-decoration: none;
-        font-weight: bold;
-    }
-
-    .home-button:hover {
-        background-color: #880e4f;
-    }
-
-    .container {
-        max-width: 600px;
-        margin: 80px auto;
-        padding: 20px;
-    }
 
     .form-box {
+        max-width: 600px;
+        margin: 40px auto;
         background-color: white;
         padding: 35px;
         border-radius: 15px;
         box-shadow: 0 3px 12px rgba(0, 0, 0, 0.12);
     }
 
-    h1 {
+    .form-box h1 {
         text-align: center;
         color: #8b3a62;
         margin-bottom: 30px;
     }
 
-    form p {
+    .form-box form p {
         margin-bottom: 20px;
     }
 
-    label {
+    .form-box label {
         display: block;
         margin-bottom: 6px;
         font-weight: bold;
         color: #8b3a62;
     }
 
-    input,
-    select {
+    .form-box input,
+    .form-box select {
         width: 100%;
         padding: 10px;
         border: 1px solid #ddd;
@@ -72,23 +44,17 @@
         font-size: 15px;
     }
 
-    input:focus,
-    select:focus {
+    .form-box input:focus,
+    .form-box select:focus {
         outline: none;
         border-color: #c2185b;
     }
 
-    .checkbox {
-        display: flex;
-        align-items: center;
-        gap: 10px;
-    }
-
-    .checkbox input {
+    .form-box input[type="checkbox"] {
         width: auto;
     }
 
-    .button {
+    .form-box button {
         width: 100%;
         background-color: #c2185b;
         color: white;
@@ -100,7 +66,7 @@
         cursor: pointer;
     }
 
-    .button:hover {
+    .form-box button:hover {
         background-color: #880e4f;
     }
 
@@ -115,44 +81,35 @@
     .back:hover {
         text-decoration: underline;
     }
+
 </style>
-```
 
-</head>
 
-<body>
+<div class="form-box">
 
-```
-<a class="home-button" href="{% url 'home' %}">
-    🏠 Home
-</a>
+    <h1>
+        Add New Perfume
+    </h1>
 
-<div class="container">
 
-    <div class="form-box">
+    <form method="post">
 
-        <h1>Add New Perfume</h1>
+        {% csrf_token %}
 
-        <form method="post">
+        {{ form.as_p }}
 
-            {% csrf_token %}
 
-            {{ form.as_p }}
+        <button type="submit">
+            Add Product
+        </button>
 
-            <button type="submit" class="button">
-                Add Product
-            </button>
+    </form>
 
-        </form>
 
-        <a class="back" href="{% url 'home' %}">
-            ← Back to products
-        </a>
-
-    </div>
+    <a class="back" href="{% url 'home' %}">
+        ← Back to products
+    </a>
 
 </div>
-```
 
-</body>
-</html>
+{% endblock %}

@@ -1,66 +1,84 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{{ category.name }}</title>
+{% extends 'Sunamoebi/base.html' %}
 
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 40px;
-            background-color: #f8f4f6;
-            color: #333;
-        }
+{% block title %}
+    {{ category.name }}
+{% endblock %}
 
-        .container {
-            max-width: 1000px;
-            margin: auto;
-        }
+{% block content %}
 
-        h1 {
-            color: #8b3a62;
-        }
+<style>
+    .category-container {
+        max-width: 1000px;
+        margin: 40px auto;
+        padding: 0 20px;
+    }
 
-        .products {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-            gap: 20px;
-        }
+    .category-title {
+        color: #8b3a62;
+        margin-bottom: 25px;
+    }
 
-        .product {
-            background: white;
-            padding: 20px;
-            border-radius: 10px;
-            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-        }
+    .back {
+        display: inline-block;
+        margin-bottom: 25px;
+        text-decoration: none;
+        color: #8b3a62;
+        font-weight: bold;
+    }
 
-        .sale {
-            background-color: #d6336c;
-            color: white;
-            padding: 4px 8px;
-            border-radius: 5px;
-            font-size: 12px;
-            font-weight: bold;
-        }
+    .products {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+        gap: 20px;
+    }
 
-        .back {
-            display: inline-block;
-            margin-bottom: 25px;
-            text-decoration: none;
-            color: #8b3a62;
-            font-weight: bold;
-        }
-    </style>
-</head>
+    .product {
+        background: white;
+        padding: 20px;
+        border-radius: 10px;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    }
 
-<body>
+    .product h2 {
+        color: #1976a8;
+    }
 
-<div class="container">
+    .sale {
+        background-color: #d6336c;
+        color: white;
+        padding: 4px 8px;
+        border-radius: 5px;
+        font-size: 12px;
+        font-weight: bold;
+    }
 
-    <a class="back" href="{% url 'home' %}">← Back to all products</a>
+    .details-button {
+        display: inline-block;
+        margin-top: 10px;
+        background-color: #c2185b;
+        color: white;
+        padding: 8px 12px;
+        border-radius: 8px;
+        text-decoration: none;
+        font-weight: bold;
+    }
 
-    <h1>{{ category.name }}</h1>
+    .details-button:hover {
+        background-color: #880e4f;
+    }
+</style>
+
+
+<div class="category-container">
+
+    <a class="back" href="{% url 'home' %}">
+        ← Back to all products
+    </a>
+
+    <h1 class="category-title">
+        {{ category.name }}
+    </h1>
+
 
     <div class="products">
 
@@ -68,22 +86,50 @@
 
             <div class="product">
 
-                <h2>{{ product.name }}</h2>
+                <h2>
+                    {{ product.name }}
+                </h2>
 
-                <p>Price: ${{ product.price }}</p>
+                <p>
+                    <strong>Price:</strong>
+                    ${{ product.price }}
+                </p>
 
-                <p>Odor type: {{ product.odor_type.name }}</p>
+                <p>
+                    <strong>Odor type:</strong>
+                    {{ product.odor_type.name }}
+                </p>
+
 
                 {% if product.has_discount %}
-                    <span class="sale">SALE</span>
-                    <p>Discount: {{ product.discount_rate }}%</p>
+
+                    <span class="sale">
+                        SALE
+                    </span>
+
+                    <p>
+                        <strong>Discount:</strong>
+                        {{ product.discount_rate }}%
+                    </p>
+
                 {% endif %}
+
+
+                <a
+                    class="details-button"
+                    href="{% url 'product_detail' product.id %}">
+
+                    Product Details
+
+                </a>
 
             </div>
 
         {% empty %}
 
-            <p>No products in this category.</p>
+            <p>
+                No products in this category.
+            </p>
 
         {% endfor %}
 
@@ -91,5 +137,4 @@
 
 </div>
 
-</body>
-</html>
+{% endblock %}
