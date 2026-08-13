@@ -2,7 +2,7 @@ from django.shortcuts import render, redirect, get_object_or_404
 from django.db.models import Count
 from django.views import View
 
-from .models import Product, Category
+from .models import Product, Category, OdorType
 from .forms import ProductForm
 
 
@@ -10,7 +10,76 @@ class HomeView(View):
 
     def get(self, request):
 
-        products = Product.objects.all().order_by('price')
+        # Start with all products
+        products = Product.objects.all()
+
+        # Get search, filter and sort values from URL
+        search = request.GET.get('search', '').strip()
+        category = request.GET.get('category', '')
+        odor_type = request.GET.get('odor_type', '')
+        discount = request.GET.get('discount', '')
+        sort = request.GET.get('sort', 'price_asc')
+
+        # =========================
+        # SEARCH
+        # =========================
+
+        if search:
+            products = products.filter(
+                name__icontains=search
+            )
+
+        # =========================
+        # CATEGORY FILTER
+        # =========================
+
+        if category:
+            products = products.filter(
+                category_id=category
+            )
+
+        # =========================
+        # ODOR TYPE FILTER
+        # =========================
+
+        if odor_type:
+            products = products.filter(
+                odor_type_id=odor_type
+            )
+
+        # =========================
+        # DISCOUNT FILTER
+        # =========================
+
+        if discount == 'yes':
+            products = products.filter(
+                has_discount=True
+            )
+
+        elif discount == 'no':
+            products = products.filter(
+                has_discount=False
+            )
+
+        # =========================
+        # SORTING
+        # =========================
+
+        if sort == 'price_asc':
+            products = products.order_by('price')
+
+        elif sort == 'price_desc':
+            products = products.order_by('-price')
+
+        elif sort == 'name_asc':
+            products = products.order_by('name')
+
+        elif sort == 'name_desc':
+            products = products.order_by('-name')
+
+        # =========================
+        # CATEGORIES
+        # =========================
 
         categories = Category.objects.annotate(
             product_count=Count('product')
@@ -18,12 +87,29 @@ class HomeView(View):
             product_count__gt=0
         )
 
+        # =========================
+        # ODOR TYPES
+        # =========================
+
+        odor_types = OdorType.objects.all()
+
+        # =========================
+        # SEND DATA TO TEMPLATE
+        # =========================
+
         return render(
             request,
             'Sunamoebi/home.html',
             {
                 'products': products,
                 'categories': categories,
+                'odor_types': odor_types,
+
+                'search': search,
+                'selected_category': category,
+                'selected_odor_type': odor_type,
+                'selected_discount': discount,
+                'selected_sort': sort,
             }
         )
 
@@ -106,6 +192,7 @@ class AddProductView(View):
 
         if form.is_valid():
             form.save()
+
             return redirect('home')
 
         return render(

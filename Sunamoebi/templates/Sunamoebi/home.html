@@ -4,429 +4,978 @@
 
 <head>
 
-```
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8">
 
-<title>Women's Perfumes</title>
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
 
-<style>
+    <title>Women's Perfumes</title>
 
-    body {
-        font-family: Arial, sans-serif;
-        margin: 0;
-        background-color: #fff5fa;
-        color: #4a2140;
-    }
 
-    /* Top section */
+    <style>
 
-    .header {
-        position: relative;
-        text-align: center;
-        padding: 30px;
-    }
+        /* =========================
+           GENERAL
+        ========================= */
 
-    .title-box {
-        display: inline-block;
-        background-color: #f48fb1;
-        color: white;
-        padding: 20px 60px;
-        border-radius: 15px;
-        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
-    }
+        body {
 
-    .title-box h1 {
-        margin: 0;
-        font-size: 32px;
-    }
+            font-family: Arial, sans-serif;
 
+            margin: 0;
 
-    /* Left buttons */
+            background-color: #fff5fa;
 
-    .left-buttons {
-        position: absolute;
-        top: 25px;
-        left: 30px;
-
-        display: flex;
-        flex-direction: column;
-        gap: 8px;
-    }
-
-    .add-product-button {
-        background-color: #1976a8;
-        color: white;
-
-        padding: 12px 18px;
-
-        border-radius: 10px;
-
-        text-decoration: none;
-        font-weight: bold;
-
-        box-shadow: 0 3px 8px rgba(0, 0, 0, 0.15);
-    }
-
-    .add-product-button:hover {
-        background-color: #125a80;
-    }
-
-
-    /* Discount link */
-
-    .discount-link {
-        position: absolute;
-
-        top: 25px;
-        right: 30px;
-
-        background-color: #c2185b;
-        color: white;
-
-        padding: 12px 18px;
-
-        border-radius: 10px;
-
-        text-decoration: none;
-        font-weight: bold;
-
-        box-shadow: 0 3px 8px rgba(0, 0, 0, 0.15);
-    }
-
-    .discount-link:hover {
-        background-color: #880e4f;
-    }
-
-
-    /* Categories */
-
-    .categories-section {
-        text-align: center;
-
-        margin: 20px auto 40px;
-    }
-
-    .categories-section h2 {
-        margin-bottom: 20px;
-    }
-
-    .categories {
-
-        display: flex;
-
-        justify-content: center;
-
-        gap: 20px;
-
-        flex-wrap: wrap;
-    }
-
-    .category {
-
-        background-color: #ad1457;
-
-        border-radius: 12px;
-
-        padding: 18px 30px;
-
-        min-width: 160px;
-
-        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
-    }
-
-    .category a {
-
-        color: white;
-
-        text-decoration: none;
-
-        font-weight: bold;
-
-        font-size: 17px;
-    }
-
-    .category:hover {
-        background-color: #880e4f;
-    }
-
-
-    /* Products */
-
-    .products-section {
-
-        max-width: 1000px;
-
-        margin: 0 auto;
-
-        padding: 20px;
-    }
-
-    .products-section h2 {
-
-        text-align: center;
-
-        margin-bottom: 25px;
-    }
-
-    .products {
-
-        display: grid;
-
-        grid-template-columns: repeat(2, 1fr);
-
-        gap: 20px;
-    }
-
-    .product {
-
-        background-color: #dff4ff;
-
-        border: 1px solid #b8e4f5;
-
-        border-radius: 12px;
-
-        padding: 20px;
-
-        box-shadow: 0 3px 8px rgba(0, 0, 0, 0.1);
-    }
-
-    .product h3 {
-
-        margin-top: 0;
-
-        font-size: 21px;
-    }
-
-    .product h3 a {
-
-        color: #1976a8;
-
-        text-decoration: none;
-    }
-
-    .product h3 a:hover {
-
-        text-decoration: underline;
-    }
-
-
-    /* Price */
-
-    .price {
-
-        font-size: 18px;
-
-        font-weight: bold;
-    }
-
-
-    /* SALE */
-
-    .sale {
-
-        background-color: #e91e63;
-
-        color: white;
-
-        padding: 5px 10px;
-
-        border-radius: 6px;
-
-        margin-left: 10px;
-
-        font-size: 14px;
-
-        font-weight: bold;
-    }
-
-    .product p {
-
-        margin: 8px 0;
-    }
-
-
-    /* Product Details button */
-
-    .details-button {
-
-        display: inline-block;
-
-        margin-top: 12px;
-
-        background-color: #c2185b;
-
-        color: white;
-
-        padding: 10px 16px;
-
-        border-radius: 8px;
-
-        text-decoration: none;
-
-        font-weight: bold;
-    }
-
-    .details-button:hover {
-
-        background-color: #880e4f;
-    }
-
-
-    /* Update button */
-
-    .update-button {
-
-        display: inline-block;
-
-        margin-top: 8px;
-
-        background-color: #1976a8;
-
-        color: white;
-
-        padding: 10px 16px;
-
-        border-radius: 8px;
-
-        text-decoration: none;
-
-        font-weight: bold;
-    }
-
-    .update-button:hover {
-
-        background-color: #125a80;
-    }
-
-
-    /* Delete button */
-
-    .delete-button {
-
-        display: inline-block;
-
-        margin-top: 8px;
-
-        background-color: #d6336c;
-
-        color: white;
-
-        padding: 10px 16px;
-
-        border-radius: 8px;
-
-        text-decoration: none;
-
-        font-weight: bold;
-    }
-
-    .delete-button:hover {
-
-        background-color: #a61e4d;
-    }
-
-
-    /* Small screens */
-
-    @media (max-width: 700px) {
-
-        .products {
-
-            grid-template-columns: 1fr;
+            color: #4a2140;
         }
 
-        .discount-link {
 
-            position: static;
-
-            display: inline-block;
-
-            margin-top: 15px;
-        }
-
-        .left-buttons {
-
-            position: static;
-
-            align-items: center;
-
-            margin-bottom: 15px;
-        }
+        /* =========================
+           HEADER
+        ========================= */
 
         .header {
 
-            padding-top: 20px;
+            position: relative;
+
+            text-align: center;
+
+            padding: 30px;
         }
 
-    }
 
-</style>
-```
+        .title-box {
+
+            display: inline-block;
+
+            background-color: #f48fb1;
+
+            color: white;
+
+            padding: 20px 60px;
+
+            border-radius: 15px;
+
+            box-shadow:
+                0 4px 10px
+                rgba(0, 0, 0, 0.15);
+        }
+
+
+        .title-box h1 {
+
+            margin: 0;
+
+            font-size: 32px;
+        }
+
+
+        /* =========================
+           LEFT BUTTON
+        ========================= */
+
+        .left-buttons {
+
+            position: absolute;
+
+            top: 25px;
+
+            left: 30px;
+
+            display: flex;
+
+            flex-direction: column;
+
+            gap: 8px;
+        }
+
+
+        .add-product-button {
+
+            background-color: #1976a8;
+
+            color: white;
+
+            padding: 12px 18px;
+
+            border-radius: 10px;
+
+            text-decoration: none;
+
+            font-weight: bold;
+
+            box-shadow:
+                0 3px 8px
+                rgba(0, 0, 0, 0.15);
+        }
+
+
+        .add-product-button:hover {
+
+            background-color: #125a80;
+        }
+
+
+        /* =========================
+           DISCOUNT BUTTON
+        ========================= */
+
+        .discount-link {
+
+            position: absolute;
+
+            top: 25px;
+
+            right: 30px;
+
+            background-color: #c2185b;
+
+            color: white;
+
+            padding: 12px 18px;
+
+            border-radius: 10px;
+
+            text-decoration: none;
+
+            font-weight: bold;
+
+            box-shadow:
+                0 3px 8px
+                rgba(0, 0, 0, 0.15);
+        }
+
+
+        .discount-link:hover {
+
+            background-color: #880e4f;
+        }
+
+
+        /* =========================
+           SEARCH / FILTER / SORT
+        ========================= */
+
+        .filter-box {
+
+            max-width: 1000px;
+
+            margin: 10px auto 35px;
+
+            padding: 25px;
+
+            background-color: white;
+
+            border-radius: 18px;
+
+            box-shadow:
+                0 4px 12px
+                rgba(0, 0, 0, 0.12);
+        }
+
+
+        .filter-box h2 {
+
+            text-align: center;
+
+            color: #c2185b;
+
+            margin-top: 0;
+
+            margin-bottom: 25px;
+        }
+
+
+        .filter-form {
+
+            display: grid;
+
+            grid-template-columns:
+                repeat(2, 1fr);
+
+            gap: 18px;
+        }
+
+
+        .filter-item {
+
+            display: flex;
+
+            flex-direction: column;
+        }
+
+
+        .filter-item label {
+
+            margin-bottom: 7px;
+
+            font-weight: bold;
+
+            color: #6a1b4d;
+        }
+
+
+        .filter-item input,
+
+        .filter-item select {
+
+            width: 100%;
+
+            padding: 12px;
+
+            border: 1px solid #e1a7bd;
+
+            border-radius: 9px;
+
+            box-sizing: border-box;
+
+            font-size: 15px;
+
+            background-color: white;
+        }
+
+
+        .filter-item input:focus,
+
+        .filter-item select:focus {
+
+            outline: none;
+
+            border-color: #c2185b;
+        }
+
+
+        /* =========================
+           FILTER BUTTONS
+        ========================= */
+
+        .filter-buttons {
+
+            grid-column: 1 / -1;
+
+            display: flex;
+
+            justify-content: center;
+
+            gap: 12px;
+
+            margin-top: 5px;
+        }
+
+
+        .apply-button {
+
+            background-color: #c2185b;
+
+            color: white;
+
+            border: none;
+
+            padding: 12px 25px;
+
+            border-radius: 9px;
+
+            font-size: 15px;
+
+            font-weight: bold;
+
+            cursor: pointer;
+        }
+
+
+        .apply-button:hover {
+
+            background-color: #880e4f;
+        }
+
+
+        .clear-button {
+
+            background-color: #1976a8;
+
+            color: white;
+
+            padding: 12px 25px;
+
+            border-radius: 9px;
+
+            text-decoration: none;
+
+            font-size: 15px;
+
+            font-weight: bold;
+        }
+
+
+        .clear-button:hover {
+
+            background-color: #125a80;
+        }
+
+
+        /* =========================
+           CATEGORIES
+        ========================= */
+
+        .categories-section {
+
+            text-align: center;
+
+            margin: 20px auto 40px;
+        }
+
+
+        .categories-section h2 {
+
+            margin-bottom: 20px;
+        }
+
+
+        .categories {
+
+            display: flex;
+
+            justify-content: center;
+
+            gap: 20px;
+
+            flex-wrap: wrap;
+        }
+
+
+        .category {
+
+            background-color: #ad1457;
+
+            border-radius: 12px;
+
+            padding: 18px 30px;
+
+            min-width: 160px;
+
+            box-shadow:
+                0 4px 8px
+                rgba(0, 0, 0, 0.15);
+        }
+
+
+        .category a {
+
+            color: white;
+
+            text-decoration: none;
+
+            font-weight: bold;
+
+            font-size: 17px;
+        }
+
+
+        .category:hover {
+
+            background-color: #880e4f;
+        }
+
+
+        /* =========================
+           PRODUCTS
+        ========================= */
+
+        .products-section {
+
+            max-width: 1000px;
+
+            margin: 0 auto;
+
+            padding: 20px;
+        }
+
+
+        .products-section h2 {
+
+            text-align: center;
+
+            margin-bottom: 25px;
+        }
+
+
+        .products {
+
+            display: grid;
+
+            grid-template-columns:
+                repeat(2, 1fr);
+
+            gap: 20px;
+        }
+
+
+        .product {
+
+            background-color: #dff4ff;
+
+            border: 1px solid #b8e4f5;
+
+            border-radius: 12px;
+
+            padding: 20px;
+
+            box-shadow:
+                0 3px 8px
+                rgba(0, 0, 0, 0.1);
+        }
+
+
+        .product h3 {
+
+            margin-top: 0;
+
+            font-size: 21px;
+        }
+
+
+        .product h3 a {
+
+            color: #1976a8;
+
+            text-decoration: none;
+        }
+
+
+        .product h3 a:hover {
+
+            text-decoration: underline;
+        }
+
+
+        /* =========================
+           PRICE
+        ========================= */
+
+        .price {
+
+            font-size: 18px;
+
+            font-weight: bold;
+        }
+
+
+        /* =========================
+           SALE
+        ========================= */
+
+        .sale {
+
+            background-color: #e91e63;
+
+            color: white;
+
+            padding: 5px 10px;
+
+            border-radius: 6px;
+
+            margin-left: 10px;
+
+            font-size: 14px;
+
+            font-weight: bold;
+        }
+
+
+        .product p {
+
+            margin: 8px 0;
+        }
+
+
+        /* =========================
+           PRODUCT BUTTONS
+        ========================= */
+
+        .details-button,
+
+        .update-button,
+
+        .delete-button {
+
+            display: inline-block;
+
+            margin-top: 10px;
+
+            color: white;
+
+            padding: 10px 16px;
+
+            border-radius: 8px;
+
+            text-decoration: none;
+
+            font-weight: bold;
+        }
+
+
+        .details-button {
+
+            background-color: #c2185b;
+        }
+
+
+        .details-button:hover {
+
+            background-color: #880e4f;
+        }
+
+
+        .update-button {
+
+            background-color: #1976a8;
+        }
+
+
+        .update-button:hover {
+
+            background-color: #125a80;
+        }
+
+
+        .delete-button {
+
+            background-color: #d6336c;
+        }
+
+
+        .delete-button:hover {
+
+            background-color: #a61e4d;
+        }
+
+
+        /* =========================
+           NO PRODUCTS
+        ========================= */
+
+        .no-products {
+
+            grid-column: 1 / -1;
+
+            text-align: center;
+
+            background-color: white;
+
+            padding: 30px;
+
+            border-radius: 12px;
+
+            color: #8b3a62;
+
+            font-size: 18px;
+        }
+
+
+        /* =========================
+           MOBILE
+        ========================= */
+
+        @media (max-width: 700px) {
+
+            .filter-form {
+
+                grid-template-columns: 1fr;
+            }
+
+
+            .filter-buttons {
+
+                grid-column: auto;
+            }
+
+
+            .products {
+
+                grid-template-columns: 1fr;
+            }
+
+
+            .discount-link {
+
+                position: static;
+
+                display: inline-block;
+
+                margin-top: 15px;
+            }
+
+
+            .left-buttons {
+
+                position: static;
+
+                align-items: center;
+
+                margin-bottom: 15px;
+            }
+
+
+            .header {
+
+                padding-top: 20px;
+            }
+
+
+            .title-box {
+
+                padding: 15px 30px;
+            }
+
+
+            .title-box h1 {
+
+                font-size: 25px;
+            }
+
+        }
+
+    </style>
 
 </head>
 
+
 <body>
 
-```
-<!-- Header -->
+
+<!-- =========================
+     HEADER
+========================= -->
 
 <div class="header">
 
-
-    <!-- Add Product -->
 
     <div class="left-buttons">
 
         <a
             class="add-product-button"
-            href="{% url 'add_product' %}">
+            href="{% url 'add_product' %}"
+        >
             ➕ Add Product
         </a>
 
     </div>
 
 
-    <!-- Main title -->
-
     <div class="title-box">
 
-        <h1>Women's Perfumes</h1>
+        <h1>
+            Women's Perfumes
+        </h1>
 
     </div>
 
 
-    <!-- Discounted Products -->
-
     <a
         class="discount-link"
-        href="{% url 'discounted_products' %}">
-
+        href="{% url 'discounted_products' %}"
+    >
         🔥 Discounted Products
-
     </a>
 
 </div>
 
 
+<!-- =========================
+     SEARCH / FILTER / SORT
+========================= -->
 
-<!-- Categories -->
+<div class="filter-box">
+
+    <h2>
+        Search, Filter & Sort
+    </h2>
+
+
+    <form
+        method="GET"
+        class="filter-form"
+    >
+
+
+        <!-- SEARCH -->
+
+        <div class="filter-item">
+
+            <label for="search">
+                Search by product name:
+            </label>
+
+            <input
+                type="text"
+                id="search"
+                name="search"
+                placeholder="Enter perfume name..."
+                value="{{ search }}"
+            >
+
+        </div>
+
+
+        <!-- CATEGORY -->
+
+        <div class="filter-item">
+
+            <label for="category">
+                Category:
+            </label>
+
+            <select
+                id="category"
+                name="category"
+            >
+
+                <option value="">
+                    All Categories
+                </option>
+
+
+                {% for category in categories %}
+
+                    <option
+                        value="{{ category.id }}"
+
+                        {% if selected_category == category.id|stringformat:"s" %}
+                            selected
+                        {% endif %}
+                    >
+
+                        {{ category.name }}
+
+                    </option>
+
+                {% endfor %}
+
+            </select>
+
+        </div>
+
+
+        <!-- ODOR TYPE -->
+
+        <div class="filter-item">
+
+            <label for="odor_type">
+                Odor Type:
+            </label>
+
+            <select
+                id="odor_type"
+                name="odor_type"
+            >
+
+                <option value="">
+                    All Odor Types
+                </option>
+
+
+                {% for odor in odor_types %}
+
+                    <option
+                        value="{{ odor.id }}"
+
+                        {% if selected_odor_type == odor.id|stringformat:"s" %}
+                            selected
+                        {% endif %}
+                    >
+
+                        {{ odor.name }}
+
+                    </option>
+
+                {% endfor %}
+
+            </select>
+
+        </div>
+
+
+        <!-- DISCOUNT -->
+
+        <div class="filter-item">
+
+            <label for="discount">
+                Discount:
+            </label>
+
+            <select
+                id="discount"
+                name="discount"
+            >
+
+                <option
+                    value=""
+
+                    {% if selected_discount == '' %}
+                        selected
+                    {% endif %}
+                >
+
+                    All Products
+
+                </option>
+
+
+                <option
+                    value="yes"
+
+                    {% if selected_discount == 'yes' %}
+                        selected
+                    {% endif %}
+                >
+
+                    Discounted Only
+
+                </option>
+
+
+                <option
+                    value="no"
+
+                    {% if selected_discount == 'no' %}
+                        selected
+                    {% endif %}
+                >
+
+                    Without Discount
+
+                </option>
+
+            </select>
+
+        </div>
+
+
+        <!-- SORT -->
+
+        <div class="filter-item">
+
+            <label for="sort">
+                Sort products:
+            </label>
+
+            <select
+                id="sort"
+                name="sort"
+            >
+
+                <option
+                    value="price_asc"
+
+                    {% if selected_sort == 'price_asc' %}
+                        selected
+                    {% endif %}
+                >
+
+                    Price: Low to High
+
+                </option>
+
+
+                <option
+                    value="price_desc"
+
+                    {% if selected_sort == 'price_desc' %}
+                        selected
+                    {% endif %}
+                >
+
+                    Price: High to Low
+
+                </option>
+
+
+                <option
+                    value="name_asc"
+
+                    {% if selected_sort == 'name_asc' %}
+                        selected
+                    {% endif %}
+                >
+
+                    Name: A to Z
+
+                </option>
+
+
+                <option
+                    value="name_desc"
+
+                    {% if selected_sort == 'name_desc' %}
+                        selected
+                    {% endif %}
+                >
+
+                    Name: Z to A
+
+                </option>
+
+            </select>
+
+        </div>
+
+
+        <!-- BUTTONS -->
+
+        <div class="filter-buttons">
+
+            <button
+                type="submit"
+                class="apply-button"
+            >
+
+                🔍 Apply
+
+            </button>
+
+
+            <a
+                href="{% url 'home' %}"
+                class="clear-button"
+            >
+
+                ✖ Clear
+
+            </a>
+
+        </div>
+
+    </form>
+
+</div>
+
+
+<!-- =========================
+     CATEGORIES
+========================= -->
 
 <div class="categories-section">
 
-    <h2>Categories</h2>
+    <h2>
+        Categories
+    </h2>
 
 
     <div class="categories">
+
 
         {% for category in categories %}
 
             <div class="category">
 
                 <a
-                    href="{% url 'category_products' category.id %}">
+                    href="{% url 'category_products' category.id %}"
+                >
 
                     {{ category.name }}
+
                     ({{ category.product_count }})
 
                 </a>
@@ -435,21 +984,27 @@
 
         {% empty %}
 
-            <p>No categories available.</p>
+            <p>
+                No categories available.
+            </p>
 
         {% endfor %}
+
 
     </div>
 
 </div>
 
 
-
-<!-- Products -->
+<!-- =========================
+     PRODUCTS
+========================= -->
 
 <div class="products-section">
 
-    <h2>All Products</h2>
+    <h2>
+        Products
+    </h2>
 
 
     <div class="products">
@@ -461,12 +1016,13 @@
             <div class="product">
 
 
-                <!-- Product name -->
+                <!-- PRODUCT NAME -->
 
                 <h3>
 
                     <a
-                        href="{% url 'product_detail' product.id %}">
+                        href="{% url 'product_detail' product.id %}"
+                    >
 
                         {{ product.name }}
 
@@ -475,7 +1031,7 @@
                 </h3>
 
 
-                <!-- Price -->
+                <!-- PRICE -->
 
                 <p class="price">
 
@@ -495,55 +1051,79 @@
                 </p>
 
 
-                <!-- Category -->
+                <!-- CATEGORY -->
 
                 <p>
 
-                    <strong>Category:</strong>
+                    <strong>
+                        Category:
+                    </strong>
 
                     {{ product.category.name }}
 
                 </p>
 
 
-                <!-- Odor type -->
+                <!-- ODOR TYPE -->
 
                 <p>
 
-                    <strong>Odor type:</strong>
+                    <strong>
+                        Odor type:
+                    </strong>
 
                     {{ product.odor_type.name }}
 
                 </p>
 
 
-                <!-- Product Details -->
+                <!-- DISCOUNT RATE -->
+
+                {% if product.has_discount %}
+
+                    <p>
+
+                        <strong>
+                            Discount:
+                        </strong>
+
+                        {{ product.discount_rate }}%
+
+                    </p>
+
+                {% endif %}
+
+
+                <!-- DETAILS -->
 
                 <a
                     class="details-button"
-                    href="{% url 'product_detail' product.id %}">
+                    href="{% url 'product_detail' product.id %}"
+                >
 
                     Product Details
 
                 </a>
 
 
-                <!-- Update -->
+                <!-- UPDATE -->
 
                 <a
                     class="update-button"
-                    href="{% url 'update_product' product.id %}">
+                    href="{% url 'update_product' product.id %}"
+                >
 
                     ✏️ Update
 
                 </a>
 
 
-                <!-- Delete -->
+                <!-- DELETE -->
 
                 <a
                     class="delete-button"
-                    href="{% url 'delete_product' product.id %}">
+                    href="{% url 'delete_product' product.id %}"
+                >
 
                     🗑️ Delete
 
@@ -556,7 +1136,15 @@
         {% empty %}
 
 
-            <p>No products available.</p>
+            <div class="no-products">
+
+                No products found.
+
+                <br><br>
+
+                Try changing your search or filters.
+
+            </div>
 
 
         {% endfor %}
@@ -565,7 +1153,7 @@
     </div>
 
 </div>
-```
+
 
 </body>
 
