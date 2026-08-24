@@ -15,11 +15,27 @@ class Category(models.Model):
         return self.name
 
 
+
+class Category(models.Model):
+    name = models.CharField(max_length=100)
+    access_count = models.PositiveIntegerField(default=0)
+
+    def __str__(self):
+        return self.name
+
 class Product(models.Model):
     name = models.CharField(max_length=200)
-    price = models.DecimalField(max_digits=10, decimal_places=2)
+    slug = models.SlugField(max_length=220, unique=True, blank=True)
+
+    price = models.DecimalField(
+        max_digits=10,
+        decimal_places=2
+    )
+
     image = models.ImageField(
-        upload_to='products/', null=True, blank=True
+        upload_to='products/',
+        null=True,
+        blank=True
     )
 
     category = models.ForeignKey(
@@ -33,6 +49,7 @@ class Product(models.Model):
     )
 
     has_discount = models.BooleanField(default=False)
+
     discount_rate = models.DecimalField(
         max_digits=5,
         decimal_places=2,

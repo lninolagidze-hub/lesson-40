@@ -1,3 +1,4 @@
+```html
 {% extends 'Sunamoebi/base.html' %}
 
 {% block title %}
@@ -250,6 +251,37 @@
         font-size: 18px;
     }
 
+    /* PAGINATION */
+
+    .pagination {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 10px;
+        margin: 35px 0;
+    }
+
+    .pagination a {
+        background-color: #1976a8;
+        color: white;
+        padding: 10px 16px;
+        border-radius: 8px;
+        text-decoration: none;
+        font-weight: bold;
+    }
+
+    .pagination a:hover {
+        background-color: #125a80;
+    }
+
+    .pagination .current {
+        background-color: #f48fb1;
+        color: white;
+        padding: 10px 16px;
+        border-radius: 8px;
+        font-weight: bold;
+    }
+
     @media (max-width: 700px) {
 
         .filter-form {
@@ -263,7 +295,6 @@
         .products {
             grid-template-columns: 1fr;
         }
-
     }
 
 </style>
@@ -333,7 +364,6 @@
 
                     <option
                         value="{{ category.id }}"
-
                         {% if selected_category == category.id|stringformat:"s" %}
                             selected
                         {% endif %}
@@ -371,7 +401,6 @@
 
                     <option
                         value="{{ odor.id }}"
-
                         {% if selected_odor_type == odor.id|stringformat:"s" %}
                             selected
                         {% endif %}
@@ -407,7 +436,6 @@
 
                 <option
                     value="yes"
-
                     {% if selected_discount == 'yes' %}
                         selected
                     {% endif %}
@@ -419,7 +447,6 @@
 
                 <option
                     value="no"
-
                     {% if selected_discount == 'no' %}
                         selected
                     {% endif %}
@@ -449,7 +476,6 @@
 
                 <option
                     value="price_asc"
-
                     {% if selected_sort == 'price_asc' %}
                         selected
                     {% endif %}
@@ -461,7 +487,6 @@
 
                 <option
                     value="price_desc"
-
                     {% if selected_sort == 'price_desc' %}
                         selected
                     {% endif %}
@@ -473,7 +498,6 @@
 
                 <option
                     value="name_asc"
-
                     {% if selected_sort == 'name_asc' %}
                         selected
                     {% endif %}
@@ -485,7 +509,6 @@
 
                 <option
                     value="name_desc"
-
                     {% if selected_sort == 'name_desc' %}
                         selected
                     {% endif %}
@@ -548,7 +571,6 @@
                 >
 
                     {{ category.name }}
-
                     ({{ category.product_count }})
 
                 </a>
@@ -691,7 +713,6 @@
 
             </div>
 
-
         {% empty %}
 
             <div class="no-products">
@@ -711,4 +732,50 @@
 </div>
 
 
+<!-- PAGINATION -->
+
+{% if products.has_other_pages %}
+
+    <div class="pagination">
+
+        {% if products.has_previous %}
+
+            <a
+                href="?page={{ products.previous_page_number }}{% if search %}&search={{ search|urlencode }}{% endif %}{% if selected_category %}&category={{ selected_category|urlencode }}{% endif %}{% if selected_odor_type %}&odor_type={{ selected_odor_type|urlencode }}{% endif %}{% if selected_discount %}&discount={{ selected_discount|urlencode }}{% endif %}{% if selected_sort %}&sort={{ selected_sort|urlencode }}{% endif %}"
+            >
+
+                ← Previous
+
+            </a>
+
+        {% endif %}
+
+
+        <span class="current">
+
+            Page {{ products.number }}
+            of
+            {{ products.paginator.num_pages }}
+
+        </span>
+
+
+        {% if products.has_next %}
+
+            <a
+                href="?page={{ products.next_page_number }}{% if search %}&search={{ search|urlencode }}{% endif %}{% if selected_category %}&category={{ selected_category|urlencode }}{% endif %}{% if selected_odor_type %}&odor_type={{ selected_odor_type|urlencode }}{% endif %}{% if selected_discount %}&discount={{ selected_discount|urlencode }}{% endif %}{% if selected_sort %}&sort={{ selected_sort|urlencode }}{% endif %}"
+            >
+
+                Next →
+
+            </a>
+
+        {% endif %}
+
+    </div>
+
+{% endif %}
+
+
 {% endblock %}
+```

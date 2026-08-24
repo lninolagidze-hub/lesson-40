@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from django.db.models import Count
 from django.views import View
+from django.core.paginator import Paginator
 
 from .models import Product, Category, OdorType
 from .forms import ProductForm
@@ -20,36 +21,26 @@ class HomeView(View):
         discount = request.GET.get('discount', '')
         sort = request.GET.get('sort', 'price_asc')
 
-        # =========================
-        # SEARCH
-        # =========================
 
         if search:
             products = products.filter(
                 name__icontains=search
             )
 
-        # =========================
-        # CATEGORY FILTER
-        # =========================
+
 
         if category:
             products = products.filter(
                 category_id=category
             )
 
-        # =========================
-        # ODOR TYPE FILTER
-        # =========================
 
         if odor_type:
             products = products.filter(
                 odor_type_id=odor_type
             )
 
-        # =========================
-        # DISCOUNT FILTER
-        # =========================
+
 
         if discount == 'yes':
             products = products.filter(
@@ -61,10 +52,7 @@ class HomeView(View):
                 has_discount=False
             )
 
-        # =========================
-        # SORTING
-        # =========================
-
+    
         if sort == 'price_asc':
             products = products.order_by('price')
 
@@ -77,9 +65,15 @@ class HomeView(View):
         elif sort == 'name_desc':
             products = products.order_by('-name')
 
-        # =========================
-        # CATEGORIES
-        # =========================
+ 
+
+        paginator = Paginator(products, 2)
+
+        page_number = request.GET.get('page')
+
+        page_obj = paginator.get_page(page_number)
+
+
 
         categories = Category.objects.annotate(
             product_count=Count('product')
@@ -87,21 +81,17 @@ class HomeView(View):
             product_count__gt=0
         )
 
-        # =========================
-        # ODOR TYPES
-        # =========================
+    
 
         odor_types = OdorType.objects.all()
 
-        # =========================
-        # SEND DATA TO TEMPLATE
-        # =========================
+     
 
         return render(
             request,
             'Sunamoebi/home.html',
             {
-                'products': products,
+                'products': page_obj,
                 'categories': categories,
                 'odor_types': odor_types,
 
