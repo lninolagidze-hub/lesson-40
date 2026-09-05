@@ -40,7 +40,10 @@ INSTALLED_APPS = [
     'Sunamoebi',
     'users',
     'debug_toolbar',
+    'rest_framework',
+    'api',
 ]
+
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',

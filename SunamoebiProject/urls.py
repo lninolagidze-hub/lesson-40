@@ -11,6 +11,7 @@ urlpatterns = [
 
     path('', include('Sunamoebi.urls')),
     path('', include('users.urls')),
+    path('api/', include('api.urls')),
 ]
 
 
